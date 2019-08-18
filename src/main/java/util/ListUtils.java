@@ -6,9 +6,9 @@ import java.util.Objects;
 
 public class ListUtils {
 
-    public static boolean isSortedNaturalOrder(List<? extends Comparable> list) {
+    public static <T extends Comparable> boolean isSorted(List<T> list, Comparator<T> comparator) {
         for (int i = 1; i < list.size(); i++) {
-            if (Objects.compare(list.get(i - 1), list.get(i), Comparator.naturalOrder()) > 0) {
+            if (Objects.compare(list.get(i - 1), list.get(i), comparator) > 0) {
                 return false;
             }
         }
