@@ -19,7 +19,7 @@ public class ListUtilsTest {
     @Test
     public void isSortedUnsortedList() {
         List<Integer> unsorted = Arrays.asList(1, 2, 4, 3, 5);
-        Assert.assertFalse(isSorted(unsorted, Comparator.naturalOrder()));
+        Assert.assertFalse(isSorted(unsorted));
     }
 
     @Test

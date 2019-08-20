@@ -28,21 +28,21 @@ public class SorterTest {
     public void isSortedUnsorted() {
         List<Integer> unsorted = Arrays.asList(1, 2, 4, 3, 5);
         sorter.sort(unsorted);
-        Assert.assertTrue(isSorted(unsorted, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(unsorted));
     }
 
     @Test
     public void isSortedSorted() {
         List<Integer> unsorted = Arrays.asList(1, 2, 3, 4, 5);
         sorter.sort(unsorted);
-        Assert.assertTrue(isSorted(unsorted, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(unsorted));
     }
 
     @Test
     public void isSortedEmpty() {
         List<Integer> unsorted = Collections.emptyList();
         sorter.sort(unsorted);
-        Assert.assertTrue(isSorted(unsorted, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(unsorted));
     }
 
     @Test

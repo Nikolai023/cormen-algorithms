@@ -4,7 +4,11 @@ import java.util.*;
 
 public class ListUtils {
 
-    public static <T extends Comparable> boolean isSorted(List<T> list, Comparator<T> comparator) {
+    public static <T extends Comparable<? super T>> boolean isSorted(List<T> list) {
+        return isSorted(list, Comparator.naturalOrder());
+    }
+
+    public static <T extends Comparable<? super T>> boolean isSorted(List<T> list, Comparator<T> comparator) {
         for (int i = 1; i < list.size(); i++) {
             if (Objects.compare(list.get(i - 1), list.get(i), comparator) > 0) {
                 return false;
