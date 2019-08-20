@@ -4,6 +4,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class InsertionSorter implements ListSorter {
+
+    public InsertionSorter() {
+    }
+
     @Override
     public <T extends Comparable<? super T>> void sort(List<T> list) {
         sort(list, Comparator.naturalOrder());
