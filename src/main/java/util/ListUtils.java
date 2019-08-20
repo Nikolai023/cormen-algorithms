@@ -1,8 +1,6 @@
 package util;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ListUtils {
 
@@ -13,5 +11,24 @@ public class ListUtils {
             }
         }
         return true;
+    }
+
+    public static boolean containsAllDistinct(List<?> firstList, List<?> secondList) {
+        List<Object> firstListCopy = new ArrayList<>(firstList);
+        List<Object> secondListCopy = new ArrayList<>(secondList);
+        Iterator<Object> firstI = firstListCopy.iterator();
+        while (firstI.hasNext()) {
+            Object o1 = firstI.next();
+            Iterator secondI = secondListCopy.iterator();
+            while (secondI.hasNext()) {
+                Object o2 = secondI.next();
+                if (Objects.equals(o1, o2)) {
+                    firstI.remove();
+                    secondI.remove();
+                    break;
+                }
+            }
+        }
+        return firstListCopy.isEmpty() && secondListCopy.isEmpty();
     }
 }

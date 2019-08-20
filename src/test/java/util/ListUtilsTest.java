@@ -3,11 +3,9 @@ package util;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
+import static util.ListUtils.containsAllDistinct;
 import static util.ListUtils.isSorted;
 
 public class ListUtilsTest {
@@ -40,5 +38,26 @@ public class ListUtilsTest {
     public void isSortedEmptyList() {
         List<Integer> emptyList = Collections.emptyList();
         Assert.assertTrue(isSorted(emptyList, Comparator.naturalOrder()));
+    }
+
+    @Test
+    public void containsAllContainsAll() {
+        List<Object> first = Arrays.asList(1, 2, 3, 4, 5);
+        List<Object> second = Arrays.asList(1, 2, 3, 4, 5);
+        Assert.assertTrue(containsAllDistinct(first, second));
+    }
+
+    @Test
+    public void containsAllNotContainsAll() {
+        List<Object> first = Arrays.asList(1, 2, 3, 4, 5);
+        List<Object> second = Arrays.asList(1, 4, 5);
+        Assert.assertFalse(containsAllDistinct(first, second));
+    }
+
+    @Test
+    public void containsAllEmpty() {
+        List<Object> first = Collections.emptyList();
+        List<Object> second = Collections.emptyList();
+        Assert.assertTrue(containsAllDistinct(first, second));
     }
 }
