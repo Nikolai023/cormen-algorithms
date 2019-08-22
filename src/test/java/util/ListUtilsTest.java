@@ -13,7 +13,7 @@ public class ListUtilsTest {
     @Test
     public void isSortedSortedList() {
         List<Integer> sorted = Arrays.asList(1, 2, 3, 4, 5);
-        Assert.assertTrue(isSorted(sorted, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(sorted));
     }
 
     @Test
@@ -25,19 +25,19 @@ public class ListUtilsTest {
     @Test
     public void isSortedSortedListWithDuplicateValues() {
         List<Integer> sortedWithDuplicates = Arrays.asList(1, 2, 2, 3, 5);
-        Assert.assertTrue(isSorted(sortedWithDuplicates, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(sortedWithDuplicates));
     }
 
     @Test
     public void isSortedSingleElementList() {
         List<Integer> singleElementList = Collections.singletonList(1);
-        Assert.assertTrue(isSorted(singleElementList, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(singleElementList));
     }
 
     @Test
     public void isSortedEmptyList() {
         List<Integer> emptyList = Collections.emptyList();
-        Assert.assertTrue(isSorted(emptyList, Comparator.naturalOrder()));
+        Assert.assertTrue(isSorted(emptyList));
     }
 
     @Test

@@ -21,7 +21,7 @@ public class SorterTest {
 
     @Parameterized.Parameters
     public static Collection<ListSorter> instancesToTest() {
-        return Collections.singletonList(new InsertionSorter());
+        return Arrays.asList(new InsertionSorter(), new SelectionSorter());
     }
 
     @Test

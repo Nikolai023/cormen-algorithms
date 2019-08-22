@@ -9,11 +9,6 @@ public class InsertionSorter implements ListSorter {
     }
 
     @Override
-    public <T extends Comparable<? super T>> void sort(List<T> list) {
-        sort(list, Comparator.naturalOrder());
-    }
-
-    @Override
     public <T extends Comparable<? super T>> void sort(List<T> list, Comparator<T> comparator) {
         for (int j = 1; j < list.size(); j++) {
             T key = list.get(j);
