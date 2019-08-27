@@ -6,27 +6,30 @@ import java.util.List;
 
 public class MergeSorter implements ListSorter {
     protected static <T extends Comparable<? super T>> void merge(List<T> list, int q) {
-        assert q > 0 && q < list.size();
         merge(list, 0, q, list.size() - 1);
     }
 
     private static <T extends Comparable<? super T>> void merge(List<T> A, int p, int q, int r) {
-        int n1 = q - p;
-        int n2 = r - q + 1;
+        if (q == r) {
+            return;
+        }
+
+        int n1 = q - p + 1;
+        int n2 = r - q;
 
         List<T> L = new ArrayList<>(n1);
         List<T> R = new ArrayList<>(n2);
         for (int i = 0; i < n1; i++) {
             L.add(i, A.get(p + i));
         }
-        for (int j = 0; j < n1; j++) {
-            R.add(j, A.get(q + j));
+        for (int j = 0; j < n2; j++) {
+            R.add(j, A.get(q + j + 1));
         }
 
         int i = 0;
         int j = 0;
-        for (int k = p; k < r; k++) {
-            if (L.get(i).compareTo(R.get(j)) < 0) {
+        for (int k = p; k <= r; k++) {
+            if (i < L.size() && (j >= R.size() || L.get(i).compareTo(R.get(j)) <= 0)) {
                 A.set(k, L.get(i));
                 i++;
             } else {
