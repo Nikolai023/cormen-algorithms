@@ -39,9 +39,18 @@ public class MergeSorter implements ListSorter {
         }
     }
 
+    private static <T extends Comparable<? super T>> void mergeSort(List<T> A, int p, int r) {
+        if (p < r) {
+            int q = (p + r) / 2;
+            mergeSort(A, p, q);
+            mergeSort(A, q + 1, r);
+            merge(A, p, q, r);
+        }
+    }
+
     @Override
     public <T extends Comparable<? super T>> void sort(List<T> list, Comparator<T> comparator) {
-
+        mergeSort(list, 0, list.size() - 1);
     }
 
 }

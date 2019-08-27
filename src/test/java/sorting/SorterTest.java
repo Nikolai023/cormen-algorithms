@@ -28,11 +28,8 @@ public class SorterTest {
 
         List<ListSorter> sorters = Arrays.asList(
                 new InsertionSorter(),
-                new SelectionSorter()
-/*
-                ,
+                new SelectionSorter(),
                 new MergeSorter()
-*/
         );
 
         List<List<Integer>> lists = new ArrayList<>();
