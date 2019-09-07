@@ -25,7 +25,7 @@ public class MergeSorterTest {
             initialList.addAll(firstList);
             initialList.addAll(secondList);
             List<Integer> sortedList = new ArrayList<>(initialList);
-            MergeSorter.merge(sortedList, firstListCapacity - 1);
+            MergeSorter.merge(sortedList, Comparator.naturalOrder(), firstListCapacity - 1);
 
             Assert.assertTrue(initialList + "\n" + sortedList, isSorted(sortedList));
         }
@@ -36,7 +36,7 @@ public class MergeSorterTest {
         List<Integer> initialList = Arrays.asList(1, 3, 5, 6, 2, 3, 4, 7);
         List<Integer> sortedList = new ArrayList<>(initialList);
 
-        MergeSorter.merge(sortedList, 4);
+        MergeSorter.merge(sortedList, Comparator.naturalOrder(), 4);
 
         Assert.assertTrue(containsAllDistinct(initialList, sortedList));
     }

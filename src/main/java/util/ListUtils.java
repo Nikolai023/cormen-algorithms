@@ -10,7 +10,7 @@ public class ListUtils {
 
     public static <T extends Comparable<? super T>> boolean isSorted(List<T> list, Comparator<T> comparator) {
         for (int i = 1; i < list.size(); i++) {
-            if (Objects.compare(list.get(i - 1), list.get(i), comparator) > 0) {
+            if (comparator.compare(list.get(i - 1), list.get(i)) > 0) {
                 return false;
             }
         }

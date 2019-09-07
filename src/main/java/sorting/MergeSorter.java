@@ -5,11 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MergeSorter implements ListSorter {
-    protected static <T extends Comparable<? super T>> void merge(List<T> list, int q) {
-        merge(list, 0, q, list.size() - 1);
+    protected static <T extends Comparable<? super T>> void merge(List<T> list, Comparator<T> comparator, int q) {
+        merge(list, comparator, 0, q, list.size() - 1);
     }
 
-    private static <T extends Comparable<? super T>> void merge(List<T> A, int p, int q, int r) {
+    private static <T extends Comparable<? super T>> void merge(List<T> A, Comparator<T> comparator, int p, int q, int r) {
         if (q == r) {
             return;
         }
@@ -29,7 +29,7 @@ public class MergeSorter implements ListSorter {
         int i = 0;
         int j = 0;
         for (int k = p; k <= r; k++) {
-            if (i < L.size() && (j >= R.size() || L.get(i).compareTo(R.get(j)) <= 0)) {
+            if (i < L.size() && (j >= R.size() || comparator.compare(L.get(i), R.get(j)) <= 0)) {
                 A.set(k, L.get(i));
                 i++;
             } else {
@@ -39,18 +39,18 @@ public class MergeSorter implements ListSorter {
         }
     }
 
-    private static <T extends Comparable<? super T>> void mergeSort(List<T> A, int p, int r) {
+    private static <T extends Comparable<? super T>> void mergeSort(List<T> A, Comparator<T> comparator, int p, int r) {
         if (p < r) {
             int q = (p + r) / 2;
-            mergeSort(A, p, q);
-            mergeSort(A, q + 1, r);
-            merge(A, p, q, r);
+            mergeSort(A, comparator, p, q);
+            mergeSort(A, comparator, q + 1, r);
+            merge(A, comparator, p, q, r);
         }
     }
 
     @Override
     public <T extends Comparable<? super T>> void sort(List<T> list, Comparator<T> comparator) {
-        mergeSort(list, 0, list.size() - 1);
+        mergeSort(list, comparator, 0, list.size() - 1);
     }
 
 }

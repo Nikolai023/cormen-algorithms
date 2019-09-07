@@ -29,7 +29,8 @@ public class SorterTest {
         List<ListSorter> sorters = Arrays.asList(
                 new InsertionSorter(),
                 new SelectionSorter(),
-                new MergeSorter()
+                new MergeSorter(),
+                new RecursiveInsertionSorter()
         );
 
         List<List<Integer>> lists = new ArrayList<>();
@@ -72,6 +73,14 @@ public class SorterTest {
         List<Integer> actual = getListForTest();
         sorter.sort(actual);
         Assert.assertTrue(getErrorMessage(actual), containsAllDistinct(list, actual));
+    }
+
+    @Test
+    public void sortWithNondefaultComparator() {
+        List<Integer> actual = getListForTest();
+        Comparator<Integer> comparator = Comparator.reverseOrder();
+        sorter.sort(actual, comparator);
+        Assert.assertTrue(getErrorMessage(actual), isSorted(actual, comparator));
     }
 
     private List<Integer> getListForTest() {
