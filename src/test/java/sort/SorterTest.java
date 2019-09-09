@@ -26,12 +26,7 @@ public class SorterTest {
     public static Collection<Object[]> instancesToTest() {
         Collection<Object[]> instances = new ArrayList<>();
 
-        List<ListSorter> sorters = Arrays.asList(
-                new InsertionSorter(),
-                new SelectionSorter(),
-                new MergeSorter(),
-                new RecursiveInsertionSorter()
-        );
+        List<ListSorter> sorters = ListSorter.allSortersList();
 
         List<List<Integer>> lists = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
@@ -52,20 +47,6 @@ public class SorterTest {
         List<Integer> actual = getListForTest();
         sorter.sort(actual);
         Assert.assertTrue(getErrorMessage(actual), isSorted(actual));
-    }
-
-    @Test
-    public void isSortedSorted() {
-        List<Integer> unsorted = Arrays.asList(1, 2, 3, 4, 5);
-        sorter.sort(unsorted);
-        Assert.assertTrue(isSorted(unsorted));
-    }
-
-    @Test
-    public void isSortedEmpty() {
-        List<Integer> unsorted = Collections.emptyList();
-        sorter.sort(unsorted);
-        Assert.assertTrue(isSorted(unsorted));
     }
 
     @Test
