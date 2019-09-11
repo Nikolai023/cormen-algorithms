@@ -6,7 +6,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import util.RandomListGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 
 import static util.ListUtils.containsAllDistinct;
 import static util.ListUtils.isSorted;
@@ -29,8 +32,9 @@ public class SorterTest {
         List<ListSorter> sorters = ListSorter.allSortersList();
 
         List<List<Integer>> lists = new ArrayList<>();
+        RandomListGenerator generator = new RandomListGenerator();
         for (int i = 0; i < 100; i++) {
-            lists.add(RandomListGenerator.generateRandomIntegerList());
+            lists.add(generator.generate());
         }
 
         for (ListSorter sorter : sorters) {

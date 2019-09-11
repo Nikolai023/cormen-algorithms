@@ -8,15 +8,10 @@ public class RandomListGenerator {
     private static final int LIST_DEFAULT_CAPACITY = 10;
     private static final int RANDOM_DEFAULT_BOUND = 10;
 
-    public static List<Integer> generateRandomIntegerList() {
-        return generateRandomIntegerList(LIST_DEFAULT_CAPACITY, RANDOM_DEFAULT_BOUND);
-    }
+    private int capacity = LIST_DEFAULT_CAPACITY;
+    private int bounds = RANDOM_DEFAULT_BOUND;
 
-    public static List<Integer> generateRandomIntegerList(int capacity) {
-        return generateRandomIntegerList(capacity, RANDOM_DEFAULT_BOUND);
-    }
-
-    private static List<Integer> generateRandomIntegerList(int capacity, int bounds) {
+    public List<Integer> generate() {
         List<Integer> list = new ArrayList<>(capacity);
 
         Random random = new Random();
@@ -25,5 +20,13 @@ public class RandomListGenerator {
         }
 
         return list;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setBounds(int bounds) {
+        this.bounds = bounds;
     }
 }

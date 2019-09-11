@@ -13,12 +13,15 @@ public class MergeSorterTest {
     @Test
     public void mergeTest() {
         Random random = new Random();
+        RandomListGenerator generator = new RandomListGenerator();
         for (int i = 0; i < 100; i++) {
             int firstListCapacity = random.nextInt(10);
-            List<Integer> firstList = RandomListGenerator.generateRandomIntegerList(firstListCapacity);
+            generator.setCapacity(firstListCapacity);
+            List<Integer> firstList = generator.generate();
             firstList.sort(Comparator.naturalOrder());
             int secondListCapacity = random.nextInt(10);
-            List<Integer> secondList = RandomListGenerator.generateRandomIntegerList(secondListCapacity);
+            generator.setCapacity(secondListCapacity);
+            List<Integer> secondList = generator.generate();
             secondList.sort(Comparator.naturalOrder());
 
             List<Integer> initialList = new ArrayList<>();
