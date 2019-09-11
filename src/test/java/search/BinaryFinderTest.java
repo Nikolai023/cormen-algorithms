@@ -16,18 +16,45 @@ public class BinaryFinderTest {
         for (int i = 0; i < 1000; i++) {
             List<Integer> list = generator.generate();
             list.sort(Comparator.naturalOrder());
-            Finder finder = new BinaryFinder();
+
             int initialIndex = new Random().nextInt(list.size());
             Integer item = list.get(initialIndex);
+
+            Finder finder = new BinaryFinder();
             int actualIndex = finder.find(list, item);
             Assert.assertEquals(
                     "List:" + list + "\n" +
                             "Expected index: " + initialIndex + "\n" +
                             "Actual index: " + actualIndex + "\n",
-                    initialIndex,
+                    item,
+                    list.get(actualIndex));
+        }
+    }
+
+    @Test
+    public void findPlaceInList() {
+        RandomListGenerator generator = new RandomListGenerator();
+        for (int i = 0; i < 1000; i++) {
+            List<Integer> list = generator.generate();
+            list.sort(Comparator.naturalOrder());
+
+            int initialIndex = new Random().nextInt(list.size());
+            Integer item = list.get(initialIndex);
+            int expectedIndex = -(list.indexOf(item) + 1);
+
+            list.removeIf(elem -> elem.equals(item));
+
+            Finder finder = new BinaryFinder();
+            int actualIndex = finder.find(list, item);
+            Assert.assertEquals(
+                    "List:" + list + "\n" +
+                            "Expected index: " + expectedIndex + "\n" +
+                            "Actual index: " + actualIndex + "\n",
+                    expectedIndex,
                     actualIndex);
         }
     }
+
 
     @Test
     public void findInEmptyList() {
